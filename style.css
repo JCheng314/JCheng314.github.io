@@ -154,6 +154,7 @@
   .overview-text {
     max-width: 550px;
     padding: 10px;
+    word-wrap: break-word;
   }
   
   .overview-image {
