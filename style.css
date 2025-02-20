@@ -10,13 +10,16 @@ body {
     text-align: center;
     background-color: #007bff;
     color: white;
-    padding: 20px 0;
+    padding: 0; /* Remove padding to allow the image to fill the header */
+    position: relative; /* Create a stacking context */
+    overflow: hidden; /* Ensure the image doesn't overflow */
   }
   
   header h1 {
     position: absolute; /* Position the title absolutely */
-    margin-top: 100px;
+    top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
     z-index: 2; /* Ensure the title is above the image */
     margin: 0;
     font-size: 3rem; /* Adjust the font size as needed */
@@ -24,13 +27,12 @@ body {
   }
   
   header img {
-    margin-top: 10px;
-    max-width: 100%;
-    left: 50%;
-    max-height: 250px;
-    height: auto;
-    display: block;
-    z-index: 1;
+    width: 100%; /* Make the image occupy the full width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 300px; /* Adjust this value to control the image height */
+    object-fit: cover; /* Ensure the image covers the space without stretching */
+    display: block; /* Remove extra space below the image */
+    z-index: 1; /* Place the image below the title */
   }
   
   nav {
@@ -70,4 +72,62 @@ body {
   
   .tab-content.active {
     display: block;
+  }
+  
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  form label {
+    margin-top: 10px;
+  }
+  
+  form input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  #form-status {
+    margin-top: 20px;
+    text-align: center;
+    color: green;
+  }
+  
+  /* News Links */
+  #news ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #news ul li {
+    margin: 10px 0;
+  }
+  
+  #news ul li a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  #news ul li a:hover {
+    text-decoration: underline;
   }
