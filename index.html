@@ -35,11 +35,25 @@
       <p>This is the past records section. Display historical data here.</p>
     </div>
     <div id="signup" class="tab-content">
-      <h2>Sign Up</h2>
-      <p>This is the sign-up section. Include a form or instructions here.</p>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <label for="first-name">First Name:</label>
+          <input type="text" id="first-name" name="first-name" required>
+  
+          <label for="last-name">Last Name:</label>
+          <input type="text" id="last-name" name="last-name" required>
+  
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+  
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required>
+  
+          <button type="submit">Submit</button>
+        </form>
+        <p id="form-status"></p>
     </div>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
