@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"; // Import Realtime Database functions
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,18 +29,18 @@ const tabContents = document.querySelectorAll('.tab-content');
 
 // Add click event listeners to the tab links
 tabLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault(); // Prevent default link behavior
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
 
-    // Remove the 'active' class from all tabs and content sections
-    tabLinks.forEach(link => link.classList.remove('active'));
-    tabContents.forEach(content => content.classList.remove('active'));
+        // Remove the 'active' class from all tabs and content sections
+        tabLinks.forEach(link => link.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
 
-    // Add the 'active' class to the clicked tab and corresponding content section
-    const targetTab = link.getAttribute('data-tab');
-    link.classList.add('active');
-    document.getElementById(targetTab).classList.add('active');
-  });
+        // Add the 'active' class to the clicked tab and corresponding content section
+        const targetTab = link.getAttribute('data-tab');
+        link.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+    });
 });
 
 // Set the first tab as active by default
@@ -60,18 +60,19 @@ form.addEventListener('submit', async (e) => {
   
     // Save data to Firestore
     try {
-      await db.collection('signups').add({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phone: phone,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-  
-      formStatus.textContent = 'Thank you for signing up!';
-      form.reset();
+        const newSignupRef = push(ref(database, 'signups')); // Create a new reference in the 'signups' node
+        await set(newSignupRef, { // Use `set` to save data
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            timestamp: new Date().toISOString() // Add a timestamp
+        });
+    
+        formStatus.textContent = 'Thank you for signing up!';
+        form.reset();
     } catch (error) {
-      console.error('Error saving data:', error);
-      formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+        console.error('Error saving data:', error);
+        formStatus.textContent = 'Oops! Something went wrong. Please try again.';
     }
-  });
+});
