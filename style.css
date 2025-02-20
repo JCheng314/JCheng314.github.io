@@ -15,7 +15,7 @@ body {
   
   header h1 {
     position: absolute; /* Position the title absolutely */
-    top: 50%; /* Center vertically */
+    margin-top: 100px;
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Offset to truly center */
     z-index: 2; /* Ensure the title is above the image */
@@ -27,7 +27,8 @@ body {
   header img {
     margin-top: 10px;
     max-width: 100%;
-    max-height: 200px;
+    left: 50%;
+    max-height: 250px;
     height: auto;
     display: block;
     z-index: 1;
