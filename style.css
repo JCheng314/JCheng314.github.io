@@ -4,6 +4,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
   }
   
   header {
@@ -12,7 +15,10 @@ body {
     color: white;
     padding: 0; /* Remove padding to allow the image to fill the header */
     position: relative; /* Create a stacking context */
-    overflow: hidden; /* Ensure the image doesn't overflow */
+    width: 100%; /* Ensure the header spans the full width */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
   }
   
   header h1 {
@@ -27,10 +33,9 @@ body {
   }
   
   header img {
-    width: 100%; /* Make the image occupy the full width */
+    max-width: 100%; /* Ensure the image doesn't exceed the header width */
     height: auto; /* Maintain aspect ratio */
     max-height: 300px; /* Adjust this value to control the image height */
-    object-fit: cover; /* Ensure the image covers the space without stretching */
     display: block; /* Remove extra space below the image */
     z-index: 1; /* Place the image below the title */
   }
@@ -38,6 +43,7 @@ body {
   nav {
     background-color: #333;
     padding: 10px;
+    width: 100%; /* Ensure the nav spans the full width */
   }
   
   nav ul {
@@ -64,6 +70,8 @@ body {
   
   main {
     padding: 20px;
+    width: 100%; /* Ensure the main content spans the full width */
+    max-width: 800px; /* Limit the width of the main content */
   }
   
   .tab-content {
