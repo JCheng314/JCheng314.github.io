@@ -18,8 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.getDatabase(app);
-const analytics = firebase.getAnalytics(app);
+const db = firebase.database(app);
 
 // Get all tab links and content sections
 const tabLinks = document.querySelectorAll('nav ul li a');
@@ -57,20 +56,20 @@ form.addEventListener('submit', async (e) => {
     const phone = document.getElementById('phone').value;
   
     // Save data to Firestore
-    try {
-        const newSignupRef = push(ref(database, 'signups')); // Create a new reference in the 'signups' node
-        await set(newSignupRef, { // Use `set` to save data
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone,
-            timestamp: new Date().toISOString() // Add a timestamp
-        });
-    
+    // Push data to Realtime Database
+    db.ref('signups').push({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        timestamp: new Date().toISOString()
+    })
+    .then(() => {
         formStatus.textContent = 'Thank you for signing up!';
         form.reset();
-    } catch (error) {
+    })
+    .catch((error) => {
         console.error('Error saving data:', error);
         formStatus.textContent = 'Oops! Something went wrong. Please try again.';
-    }
+    });
 });
