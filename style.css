@@ -146,14 +146,14 @@
   /* Event Overview Grid Layout */
   .overview-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns: text and image */
+    grid-template-columns: 900px 1fr; /* Two columns: text and image */
     gap: 20px; /* Space between columns */
     align-items: center; /* Center items vertically */
   }
   
   .overview-text {
-    max-width: 550px;
-    padding: 10px;
+    max-width: 900px;
+    padding: 0px;
     overflow-wrap: break-word;
     min-width: 0;
   }
