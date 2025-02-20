@@ -10,17 +10,26 @@ body {
     text-align: center;
     background-color: #007bff;
     color: white;
-    padding: 20px;
+    padding: 20px 0;
   }
   
   header h1 {
+    position: absolute; /* Position the title absolutely */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    z-index: 2; /* Ensure the title is above the image */
     margin: 0;
+    font-size: 3rem; /* Adjust the font size as needed */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a shadow for better visibility */
   }
   
   header img {
     margin-top: 10px;
     max-width: 100%;
+    max-height: 200px;
     height: auto;
+    display: block;
   }
   
   nav {
