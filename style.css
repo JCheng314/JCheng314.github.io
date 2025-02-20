@@ -17,7 +17,6 @@ body {
     position: absolute; /* Position the title absolutely */
     margin-top: 100px;
     left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Offset to truly center */
     z-index: 2; /* Ensure the title is above the image */
     margin: 0;
     font-size: 3rem; /* Adjust the font size as needed */
