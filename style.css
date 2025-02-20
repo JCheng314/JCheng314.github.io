@@ -149,6 +149,7 @@
     grid-template-columns: 500px 1fr; /* Two columns: text and image */
     gap: 20px; /* Space between columns */
     align-items: center; /* Center items vertically */
+    margin-bottom: 30px;
   }
   
   .overview-text {
@@ -179,7 +180,7 @@
   .overview-image a:hover {
     text-decoration: underline; /* Add underline on hover */
   }
-  
+
   /* Map Container */
 .map-container {
   width: 100%;
