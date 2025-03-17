@@ -108,8 +108,8 @@
       <h2>Past Records</h2>
       <p>This is the past records section. Display historical data here.</p>
     </div>
-    <div id="Swimmer Registration" class="tab-content">
-        <h2>Sign Up</h2>
+    <div id="signup" class="tab-content">
+        <h2>Swimmer Registration</h2>
         <form id="signup-form">
           <label for="first-name">First Name:</label>
           <input type="text" id="first-name" name="first-name" required>
@@ -130,6 +130,28 @@
         </form>
         <p id="form-status"></p>
     </div>
+    <div id="signup_wc" class="tab-content">
+      <h2>Watercraft Registration</h2>
+      <form id="signup-form">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="first-name" required>
+
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="last-name" required>
+
+        <label for="date-of-birth">Date of Birth(DD-MM-YYYY):</label>
+        <input type="text" id="date-of-birth" name="date-of-birth" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <button type="submit">Submit</button>
+      </form>
+      <p id="form-status"></p>
+  </div>
   </main>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
