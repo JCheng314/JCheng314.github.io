@@ -1,147 +1,172 @@
 /* General Styles */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content horizontally */
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+header {
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  padding: 0; /* Remove padding to allow the image to fill the header */
+  position: relative; /* Create a stacking context */
+  width: 100%; /* Ensure the header spans the full width */
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+}
+
+.header-images {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.header-side-image {
+  width: 25%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.header-center {
+  width: 50%;
+  position: relative;
+}
+
+.header-main-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+header h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  margin: 0;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
   
-  header {
-    text-align: center;
-    background-color: #007bff;
-    color: white;
-    padding: 0; /* Remove padding to allow the image to fill the header */
-    position: relative; /* Create a stacking context */
-    width: 100%; /* Ensure the header spans the full width */
-    display: flex;
-    justify-content: center; /* Center the image horizontally */
-  }
-  
-  header h1 {
-    position: absolute; /* Position the title absolutely */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Offset to truly center */
-    z-index: 2; /* Ensure the title is above the image */
-    margin: 0;
-    font-size: 3rem; /* Adjust the font size as needed */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a shadow for better visibility */
-  }
-  header h2 {
-    left: 50%; /* Center horizontally */
-    margin-top: 20px;
-  }
-  
-  header img {
-    max-width: 100%; /* Ensure the image doesn't exceed the header width */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 300px; /* Adjust this value to control the image height */
-    display: block; /* Remove extra space below the image */
-    z-index: 1; /* Place the image below the title */
-  }
-  
-  nav {
-    background-color: #333;
-    padding: 10px;
-    width: 100%; /* Ensure the nav spans the full width */
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin: 0 20px;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  main {
-    padding: 20px;
-    width: 100%; /* Ensure the main content spans the full width */
-    max-width: 800px; /* Limit the width of the main content */
-  }
-  
-  .tab-content {
-    display: none;
-  }
-  
-  .tab-content.active {
-    display: block;
-  }
-  
-  /* Form Styles */
-  form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  form label {
-    margin-top: 10px;
-  }
-  
-  form input {
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  form button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  form button:hover {
-    background-color: #0056b3;
-  }
-  
-  #form-status {
-    margin-top: 20px;
-    text-align: center;
-    color: green;
-  }
-  
-  /* News Links */
-  #news ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  #news ul li {
-    margin: 10px 0;
-  }
-  
-  #news ul li a {
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  #news ul li a:hover {
-    text-decoration: underline;
-  }
+header h2 {
+  left: 50%; /* Center horizontally */
+  margin-top: 20px;
+}
+
+header img {
+  max-width: 100%; /* Ensure the image doesn't exceed the header width */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 300px; /* Adjust this value to control the image height */
+  display: block; /* Remove extra space below the image */
+  z-index: 1; /* Place the image below the title */
+}
+
+nav {
+  background-color: #333;
+  padding: 10px;
+  width: 100%; /* Ensure the nav spans the full width */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+  width: 100%; /* Ensure the main content spans the full width */
+  max-width: 800px; /* Limit the width of the main content */
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form label {
+  margin-top: 10px;
+}
+
+form input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+#form-status {
+  margin-top: 20px;
+  text-align: center;
+  color: green;
+}
+
+/* News Links */
+#news ul {
+  list-style: none;
+  padding: 0;
+}
+
+#news ul li {
+  margin: 10px 0;
+}
+
+#news ul li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+#news ul li a:hover {
+  text-decoration: underline;
+}
 
 /* Center all text and headers in the overview section */
 #overview {
@@ -187,51 +212,51 @@
   text-decoration: underline; /* Add underline on hover */
 }
 
-  /* Map Container */
-  .map-container {
-    width: 100%;
-    margin-top: 20px; /* Space above the map */
-  }
+/* Map Container */
+.map-container {
+  width: 100%;
+  margin-top: 20px; /* Space above the map */
+}
 
-  .map-container iframe {
-    width: 100%;
-    height: 300px; /* Fixed height */
-    border-radius: 8px; /* Match image styling */
-  }
+.map-container iframe {
+  width: 100%;
+  height: 300px; /* Fixed height */
+  border-radius: 8px; /* Match image styling */
+}
 
-  /* Add these styles to your existing CSS file */
+/* Add these styles to your existing CSS file */
 
-  .overview-text h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
+.overview-text h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
 
-  .overview-text h4 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
+.overview-text h4 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 
-  .overview-text p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
+.overview-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
 
-  .overview-text ul, .overview-text ol {
-    margin-bottom: 15px;
-    padding-left: 20px;
-  }
+.overview-text ul, .overview-text ol {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
 
-  .overview-text ul li, .overview-text ol li {
-    margin-bottom: 10px;
-  }
+.overview-text ul li, .overview-text ol li {
+  margin-bottom: 10px;
+}
 
-  .overview-text a {
-    color: #007bff;
-    text-decoration: none;
-  }
+.overview-text a {
+  color: #007bff;
+  text-decoration: none;
+}
 
-  .overview-text a:hover {
-    text-decoration: underline;
-  }
+.overview-text a:hover {
+  text-decoration: underline;
+}
