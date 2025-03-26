@@ -43,6 +43,25 @@ tabLinks.forEach(link => {
 // Set the first tab as active by default
 tabLinks[0].click();
 
+// Add this code after the existing tab handling code
+document.querySelectorAll('.tab-switcher').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetTab = link.dataset.targetTab;
+        
+        // Remove active classes
+        tabLinks.forEach(link => link.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Find and activate the target tab
+        const targetLink = document.querySelector(`[data-tab="${targetTab}"]`);
+        if (targetLink) {
+            targetLink.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+        }
+    });
+});
+
 const form = document.getElementById('signup-form');
 const formStatus = document.getElementById('form-status');
 
