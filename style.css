@@ -141,6 +141,12 @@ form button:hover {
   align-items: center;
 }
 
+/* Add to style.css */
+input:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
 #form-status {
   margin-top: 20px;
   text-align: center;

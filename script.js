@@ -61,7 +61,23 @@ document.querySelectorAll('.tab-switcher').forEach(link => {
         }
     });
 });
+const randomEscortCheckbox = document.getElementById('random-escort');
+const accompanyingNameInput = document.getElementById('accompanying-name');
 
+function updateEscortFields() {
+    if (randomEscortCheckbox.checked) {
+        accompanyingNameInput.value = '';
+        accompanyingNameInput.disabled = true;
+    } else {
+        accompanyingNameInput.disabled = false;
+    }
+}
+
+// Initial check on page load
+updateEscortFields();
+
+// Add event listener for checkbox changes
+randomEscortCheckbox.addEventListener('change', updateEscortFields);
 const form = document.getElementById('signup-form');
 const formStatus = document.getElementById('form-status');
 
