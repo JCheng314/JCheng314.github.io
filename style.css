@@ -20,28 +20,18 @@ header {
   justify-content: center; /* Center the image horizontally */
 }
 
-.header-images {
+.header-container {
   display: flex;
   justify-content: space-between;
+  align-items: stretch; /* Ensure equal height */
   width: 100%;
-  position: relative;
-}
-
-.header-side-image {
-  width: 25%;
-  height: 300px;
-  object-fit: cover;
+  height: 300px; /* Fixed container height */
+  overflow: hidden; /* Prevent image overflow */
 }
 
 .header-center {
   width: 50%;
   position: relative;
-}
-
-.header-main-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
 }
 
 header h1 {
@@ -59,13 +49,11 @@ header h2 {
   left: 50%; /* Center horizontally */
   margin-top: 20px;
 }
-
-header img {
-  max-width: 100%; /* Ensure the image doesn't exceed the header width */
-  height: auto; /* Maintain aspect ratio */
-  max-height: 300px; /* Adjust this value to control the image height */
-  display: block; /* Remove extra space below the image */
-  z-index: 1; /* Place the image below the title */
+.header-image {
+  width: 33.33%; /* Equal width for all three images */
+  height: 300px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 nav {
