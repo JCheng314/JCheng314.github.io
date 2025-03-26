@@ -73,14 +73,20 @@ form.addEventListener('submit', async (e) => {
     const lastName = document.getElementById('last-name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
+    const registrationType = document.querySelector('input[name="registrationType"]:checked').value;
+    const randomEscort = document.getElementById('random-escort').checked;
+    const accompanyingName = document.getElementById('accompanying-name').value;
   
     // Save data to Firestore
     // Push data to Realtime Database
     db.ref('signups').push({
+        registrationType: registrationType,
         firstName: firstName,
         lastName: lastName,
         email: email,
         phone: phone,
+        randomEscort: randomEscort,
+        accompanyingName: accompanyingName,
         timestamp: new Date().toISOString()
     })
     .then(() => {
