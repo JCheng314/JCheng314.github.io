@@ -124,7 +124,7 @@ function generateGallery() {
         const imgNumber = i.toString().padStart(2, '0');
         const img = document.createElement('img');
         img.className = 'gallery-img';
-        img.src = `assets/img_${imgNumber}.JPG`; // Ensure extension matches (.JPG/.jpg)
+        img.src = `assets/img_${imgNumber}.jpg`; // Ensure extension matches (.JPG/.jpg)
         img.alt = `2024 Event Photo ${i}`;
         galleryContainer.appendChild(img);
     }
