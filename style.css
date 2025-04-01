@@ -189,8 +189,6 @@ input:disabled {
   transition: transform 0.3s ease;
 }
 
-/* Keep existing media queries */
-
 /* Center all text and headers in the overview section */
 #overview {
   text-align: center;
