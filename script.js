@@ -114,3 +114,20 @@ form.addEventListener('submit', async (e) => {
         formStatus.textContent = 'Oops! Something went wrong. Please try again.';
     });
 });
+
+function generateGallery() {
+    const galleryContainer = document.getElementById('gallery-container');
+    const totalImages = 89; // CHANGE THIS to your actual number of images
+    
+    // Generate image elements
+    for (let i = 1; i <= totalImages; i++) {
+        const imgNumber = i.toString().padStart(2, '0');
+        const img = document.createElement('img');
+        img.className = 'gallery-img';
+        img.src = `assets/img_${imgNumber}.JPG`; // Ensure extension matches (.JPG/.jpg)
+        img.alt = `2024 Event Photo ${i}`;
+        galleryContainer.appendChild(img);
+    }
+}
+
+document.querySelector('[data-tab="records"]').addEventListener('click', generateGallery);

@@ -141,7 +141,6 @@ form button:hover {
   align-items: center;
 }
 
-/* Add to style.css */
 input:disabled {
   background-color: #f0f0f0;
   cursor: not-allowed;
@@ -171,6 +170,26 @@ input:disabled {
 #news ul li a:hover {
   text-decoration: underline;
 }
+
+/* Existing gallery styles */
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.gallery-img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Keep existing media queries */
 
 /* Center all text and headers in the overview section */
 #overview {
