@@ -157,9 +157,10 @@
               <label>Full Name: <input type="text" name="name" required></label>
               <label>Email: <input type="email" name="email" required></label>
               <label>Phone: <input type="tel" name="phone" required></label>
-              <div class="escort-section">
-                <label>Need Escort?
-                  <select name="escort_needed" required id="escort-needed">
+              
+              <div class="random-escort-section">
+                <label>Need Random Escort?
+                  <select name="random_escort" required id="swimmer-random-escort">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
@@ -171,7 +172,7 @@
             </div>
             <button type="submit" class="submit-btn">Submit</button>
           </form>
-    
+
           <!-- Escort Form -->
           <form id="escort-form" class="reg-form">
             <h3>Escort Registration</h3>
@@ -179,7 +180,18 @@
               <label>Full Name: <input type="text" name="name" required></label>
               <label>Email: <input type="email" name="email" required></label>
               <label>Phone: <input type="tel" name="phone" required></label>
-              <label>Escorting For: <input type="text" name="escorting_for"></label>
+              
+              <div class="random-swimmer-section">
+                <label>Escorting Random Swimmer?
+                  <select name="escort_random" required id="escort-random-swimmer">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </label>
+                <div class="swimmer-details">
+                  <label>Escorting For: <input type="text" name="escorting_for" required></label>
+                </div>
+              </div>
             </div>
             <button type="submit" class="submit-btn">Submit</button>
           </form>

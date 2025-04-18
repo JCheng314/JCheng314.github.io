@@ -382,15 +382,23 @@ input:disabled {
   margin: 20px 0;
 }
 
-.escort-details {
-  display: none;
+/* Common styles for both forms */
+.random-escort-section,
+.random-swimmer-section {
   margin-top: 15px;
+}
+
+.escort-details,
+.swimmer-details {
+  display: none;
+  margin-top: 10px;
   padding: 15px;
   background: #f8f9fa;
   border-radius: 4px;
 }
 
-.escort-details.active {
+.escort-details.active,
+.swimmer-details.active {
   display: block;
 }
 
