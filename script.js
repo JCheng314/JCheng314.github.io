@@ -61,58 +61,124 @@ document.querySelectorAll('.tab-switcher').forEach(link => {
         }
     });
 });
-const randomEscortCheckbox = document.getElementById('random-escort');
-const accompanyingNameInput = document.getElementById('accompanying-name');
+// const randomEscortCheckbox = document.getElementById('random-escort');
+// const accompanyingNameInput = document.getElementById('accompanying-name');
 
-function updateEscortFields() {
-    if (randomEscortCheckbox.checked) {
-        accompanyingNameInput.value = '';
-        accompanyingNameInput.disabled = true;
-    } else {
-        accompanyingNameInput.disabled = false;
-    }
+// function updateEscortFields() {
+//     if (randomEscortCheckbox.checked) {
+//         accompanyingNameInput.value = '';
+//         accompanyingNameInput.disabled = true;
+//     } else {
+//         accompanyingNameInput.disabled = false;
+//     }
+// }
+
+// // Initial check on page load
+// updateEscortFields();
+
+// // Add event listener for checkbox changes
+// randomEscortCheckbox.addEventListener('change', updateEscortFields);
+// const form = document.getElementById('signup-form');
+// const formStatus = document.getElementById('form-status');
+
+// form.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+  
+//     // Get form data
+//     const firstName = document.getElementById('first-name').value;
+//     const lastName = document.getElementById('last-name').value;
+//     const email = document.getElementById('email').value;
+//     const phone = document.getElementById('phone').value;
+//     const registrationType = document.querySelector('input[name="registrationType"]:checked').value;
+//     const randomEscort = document.getElementById('random-escort').checked;
+//     const accompanyingName = document.getElementById('accompanying-name').value;
+  
+//     // Save data to Firestore
+//     // Push data to Realtime Database
+//     db.ref('signups').push({
+//         registrationType: registrationType,
+//         firstName: firstName,
+//         lastName: lastName,
+//         email: email,
+//         phone: phone,
+//         randomEscort: randomEscort,
+//         accompanyingName: accompanyingName,
+//         timestamp: new Date().toISOString()
+//     })
+//     .then(() => {
+//         formStatus.textContent = 'Thank you for signing up!';
+//         form.reset();
+//     })
+//     .catch((error) => {
+//         console.error('Error saving data:', error);
+//         formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+//     });
+// });
+// Registration Flow Logic
+let currentStep = 1;
+let registrationType = null;
+
+document.querySelectorAll('.reg-option').forEach(button => {
+  button.addEventListener('click', (e) => {
+    registrationType = e.target.dataset.type;
+    showStep(2);
+    showForm(registrationType);
+  });
+});
+
+document.querySelectorAll('.prev-step').forEach(button => {
+  button.addEventListener('click', () => showStep(1));
+});
+
+// Show/hide escort details
+document.getElementById('escort-needed').addEventListener('change', (e) => {
+  document.querySelector('.escort-details').classList.toggle('active', e.target.value === 'yes');
+});
+
+function showStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.flow-step').forEach(step => {
+    step.classList.remove('active');
+  });
+  document.querySelector(`.flow-step[data-step="${step}"]`).classList.add('active');
 }
 
-// Initial check on page load
-updateEscortFields();
+function showForm(formType) {
+  document.querySelectorAll('.reg-form').forEach(form => {
+    form.classList.remove('active');
+  });
+  document.getElementById(`${formType}-form`).classList.add('active');
+}
 
-// Add event listener for checkbox changes
-randomEscortCheckbox.addEventListener('change', updateEscortFields);
-const form = document.getElementById('signup-form');
-const formStatus = document.getElementById('form-status');
-
-form.addEventListener('submit', async (e) => {
+// Form Submission Handling
+document.querySelectorAll('.reg-form').forEach(form => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-  
-    // Get form data
-    const firstName = document.getElementById('first-name').value;
-    const lastName = document.getElementById('last-name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const registrationType = document.querySelector('input[name="registrationType"]:checked').value;
-    const randomEscort = document.getElementById('random-escort').checked;
-    const accompanyingName = document.getElementById('accompanying-name').value;
-  
-    // Save data to Firestore
-    // Push data to Realtime Database
-    db.ref('signups').push({
-        registrationType: registrationType,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phone: phone,
-        randomEscort: randomEscort,
-        accompanyingName: accompanyingName,
-        timestamp: new Date().toISOString()
-    })
-    .then(() => {
-        formStatus.textContent = 'Thank you for signing up!';
-        form.reset();
-    })
-    .catch((error) => {
-        console.error('Error saving data:', error);
-        formStatus.textContent = 'Oops! Something went wrong. Please try again.';
-    });
+    const formStatus = document.getElementById('form-status');
+    
+    const formData = new FormData(form);
+    const data = {
+      type: registrationType,
+      timestamp: new Date().toISOString()
+    };
+
+    for (let [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+
+    try {
+      await db.ref('registrations').push(data);
+      formStatus.textContent = 'Registration submitted successfully!';
+      formStatus.style.color = 'green';
+      form.reset();
+      showStep(1);
+      setTimeout(() => formStatus.textContent = '', 3000);
+    } catch (error) {
+      console.error('Error saving registration:', error);
+      formStatus.textContent = 'Error submitting form. Please try again.';
+      formStatus.style.color = 'red';
+    }
+  });
 });
 
 function generateGallery() {

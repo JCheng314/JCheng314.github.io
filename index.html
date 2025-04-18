@@ -127,7 +127,87 @@
             Commodore Hotel
           </a>
       </div>
-  </div>
+    </div>
+    <div id="signup" class="tab-content">
+      <h2>Registration</h2>
+      <div class="registration-flow">
+        <!-- Step 1: Choose registration type -->
+        <div class="flow-step active" data-step="1">
+          <h3>Select Registration Type:</h3>
+          <div class="registration-options">
+            <button class="reg-option" data-type="swimmer">Swimmer Registration</button>
+            <button class="reg-option" data-type="escort">Escort Registration</button>
+            <button class="reg-option" data-type="volunteer">Volunteer Registration</button>
+            <button class="reg-option" data-type="dryswim">Dry Swim Registration</button>
+          </div>
+        </div>
+    
+        <!-- Step 2: Registration forms -->
+        <div class="flow-step" data-step="2">
+          <!-- Swimmer Form -->
+          <form id="swimmer-form" class="reg-form">
+            <h3>Swimmer Registration</h3>
+            <div class="form-section">
+              <label>Full Name: <input type="text" name="name" required></label>
+              <label>Email: <input type="email" name="email" required></label>
+              <label>Phone: <input type="tel" name="phone" required></label>
+              
+              <div class="escort-section">
+                <label>Need Escort?
+                  <select name="escort_needed" required id="escort-needed">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </label>
+                <div class="escort-details">
+                  <label>Escort Name: <input type="text" name="escort_name"></label>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="prev-step">Back</button>
+            <button type="submit">Submit Registration</button>
+          </form>
+    
+          <!-- Escort Form -->
+          <form id="escort-form" class="reg-form">
+            <h3>Escort Registration</h3>
+            <div class="form-section">
+              <label>Full Name: <input type="text" name="name" required></label>
+              <label>Email: <input type="email" name="email" required></label>
+              <label>Phone: <input type="tel" name="phone" required></label>
+              <label>Escorting For: <input type="text" name="escorting_for"></label>
+            </div>
+            <button type="button" class="prev-step">Back</button>
+            <button type="submit">Submit Registration</button>
+          </form>
+    
+          <!-- Volunteer Form -->
+          <form id="volunteer-form" class="reg-form">
+            <h3>Volunteer Registration</h3>
+            <div class="form-section">
+              <label>Full Name: <input type="text" name="name" required></label>
+              <label>Email: <input type="email" name="email" required></label>
+              <label>Phone: <input type="tel" name="phone" required></label>
+            </div>
+            <button type="button" class="prev-step">Back</button>
+            <button type="submit">Submit Registration</button>
+          </form>
+    
+          <!-- Dry Swim Form -->
+          <form id="dryswim-form" class="reg-form">
+            <h3>Dry Swim Registration</h3>
+            <div class="form-section">
+              <label>Full Name: <input type="text" name="name" required></label>
+              <label>Email: <input type="email" name="email" required></label>
+              <label>Phone: <input type="tel" name="phone" required></label>
+            </div>
+            <button type="button" class="prev-step">Back</button>
+            <button type="submit">Submit Registration</button>
+          </form>
+        </div>
+      </div>
+      <div id="form-status"></div>
+    </div>
     <div id="records" class="tab-content">
       <h2>2024 News</h2>
       <ul>
@@ -137,49 +217,7 @@
       <h2>2024 Event Gallery</h2>
       <div class="gallery-container" id="gallery-container"></div>
     </div>
-    <div id="signup" class="tab-content">
-      <h2>Registration</h2>
-      <h2>Coming Soon</h2>
-      <!--<form id="signup-form">
-        <div class="registration-type">
-          <label>
-            <input type="radio" name="registrationType" value="swimmer" required> Swimmer
-          </label>
-          <label>
-            <input type="radio" name="registrationType" value="watercraft"> Watercraft
-          </label>
-        </div>
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" name="first-name" required>
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" name="last-name" required>
-
-        <label for="date-of-birth">Date of Birth(DD-MM-YYYY):</label>
-        <input type="text" id="date-of-birth" name="date-of-birth" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required>
-
-        <div class="escort-section">
-          <label>
-            <input type="checkbox" name="randomEscort" id="random-escort"> 
-            I need a random escort
-          </label>
-          <div class="accompanying">
-            <label>Accompanying/Accompanied by someone:
-              <input type="text" name="accompanyingName" id="accompanying-name">
-            </label>
-          </div>
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-      <p id="form-status"></p>
-    </div>
-    -->
+    
     <div id="advertise" class="tab-content">
       <h2>Discounts and Local Highlights</h2>
       <ul>
