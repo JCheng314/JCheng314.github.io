@@ -128,22 +128,28 @@
           </a>
       </div>
     </div>
+    <div id="records" class="tab-content">
+      <h2>2024 News</h2>
+      <ul>
+        <li><a href="https://www.koin.com/sports/astoria-er-doctor-headlines-swim-across-the-columbia-river/" target="_blank">2024 Winner: Astoria ER doctor headlines swim across the Columbia River</a></li>
+        <li><a href="https://www.dailyastorian.com/news/local/swimmers-brave-splash-across-the-columbia/article_5cd3d4e0-584e-11ef-ae31-c764f035d6ab.html" target="_blank">2024 Event Review</a></li>
+      </ul>
+      <h2>2024 Event Gallery</h2>
+      <div class="gallery-container" id="gallery-container"></div>
+    </div>
     <div id="signup" class="tab-content">
       <h2>Registration</h2>
-      <div class="registration-flow">
-        <!-- Step 1: Choose registration type -->
-        <div class="flow-step active" data-step="1">
-          <h3>Select Registration Type:</h3>
-          <div class="registration-options">
-            <button class="reg-option" data-type="swimmer">Swimmer Registration</button>
-            <button class="reg-option" data-type="escort">Escort Registration</button>
-            <button class="reg-option" data-type="volunteer">Volunteer Registration</button>
-            <button class="reg-option" data-type="dryswim">Dry Swim Registration</button>
-          </div>
+      <div class="registration-container">
+        <!-- Changed structure -->
+        <div class="registration-selector">
+          <button class="reg-option" data-type="swimmer">Swimmer Registration</button>
+          <button class="reg-option" data-type="escort">Escort Registration</button>
+          <button class="reg-option" data-type="volunteer">Volunteer Registration</button>
+          <button class="reg-option" data-type="dryswim">Dry Swim Registration</button>
         </div>
     
-        <!-- Step 2: Registration forms -->
-        <div class="flow-step" data-step="2">
+        <!-- Forms container added -->
+        <div class="forms-wrapper">
           <!-- Swimmer Form -->
           <form id="swimmer-form" class="reg-form">
             <h3>Swimmer Registration</h3>
@@ -151,7 +157,6 @@
               <label>Full Name: <input type="text" name="name" required></label>
               <label>Email: <input type="email" name="email" required></label>
               <label>Phone: <input type="tel" name="phone" required></label>
-              
               <div class="escort-section">
                 <label>Need Escort?
                   <select name="escort_needed" required id="escort-needed">
@@ -164,8 +169,7 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="prev-step">Back</button>
-            <button type="submit">Submit Registration</button>
+            <button type="submit" class="submit-btn">Submit</button>
           </form>
     
           <!-- Escort Form -->
@@ -177,8 +181,7 @@
               <label>Phone: <input type="tel" name="phone" required></label>
               <label>Escorting For: <input type="text" name="escorting_for"></label>
             </div>
-            <button type="button" class="prev-step">Back</button>
-            <button type="submit">Submit Registration</button>
+            <button type="submit" class="submit-btn">Submit</button>
           </form>
     
           <!-- Volunteer Form -->
@@ -189,8 +192,7 @@
               <label>Email: <input type="email" name="email" required></label>
               <label>Phone: <input type="tel" name="phone" required></label>
             </div>
-            <button type="button" class="prev-step">Back</button>
-            <button type="submit">Submit Registration</button>
+            <button type="submit" class="submit-btn">Submit</button>
           </form>
     
           <!-- Dry Swim Form -->
@@ -201,23 +203,12 @@
               <label>Email: <input type="email" name="email" required></label>
               <label>Phone: <input type="tel" name="phone" required></label>
             </div>
-            <button type="button" class="prev-step">Back</button>
-            <button type="submit">Submit Registration</button>
+            <button type="submit" class="submit-btn">Submit</button>
           </form>
         </div>
       </div>
       <div id="form-status"></div>
     </div>
-    <div id="records" class="tab-content">
-      <h2>2024 News</h2>
-      <ul>
-        <li><a href="https://www.koin.com/sports/astoria-er-doctor-headlines-swim-across-the-columbia-river/" target="_blank">2024 Winner: Astoria ER doctor headlines swim across the Columbia River</a></li>
-        <li><a href="https://www.dailyastorian.com/news/local/swimmers-brave-splash-across-the-columbia/article_5cd3d4e0-584e-11ef-ae31-c764f035d6ab.html" target="_blank">2024 Event Review</a></li>
-      </ul>
-      <h2>2024 Event Gallery</h2>
-      <div class="gallery-container" id="gallery-container"></div>
-    </div>
-    
     <div id="advertise" class="tab-content">
       <h2>Discounts and Local Highlights</h2>
       <ul>

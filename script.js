@@ -114,70 +114,78 @@ document.querySelectorAll('.tab-switcher').forEach(link => {
 //         formStatus.textContent = 'Oops! Something went wrong. Please try again.';
 //     });
 // });
-// Registration Flow Logic
-let currentStep = 1;
-let registrationType = null;
+// Registration Logic - New implementation
+let activeForm = null;
 
+// Handle registration type selection
 document.querySelectorAll('.reg-option').forEach(button => {
   button.addEventListener('click', (e) => {
-    registrationType = e.target.dataset.type;
-    showStep(2);
-    showForm(registrationType);
+    const formType = e.target.dataset.type;
+    const form = document.getElementById(`${formType}-form`);
+    
+    // Toggle active state
+    if (activeForm === formType) {
+      // Clicking active button again closes form
+      e.target.classList.remove('active');
+      form.classList.remove('active');
+      activeForm = null;
+    } else {
+      // Remove all active states
+      document.querySelectorAll('.reg-option, .reg-form').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Set new active state
+      e.target.classList.add('active');
+      form.classList.add('active');
+      activeForm = formType;
+    }
   });
 });
 
-document.querySelectorAll('.prev-step').forEach(button => {
-  button.addEventListener('click', () => showStep(1));
-});
-
-// Show/hide escort details
-document.getElementById('escort-needed').addEventListener('change', (e) => {
-  document.querySelector('.escort-details').classList.toggle('active', e.target.value === 'yes');
-});
-
-function showStep(step) {
-  currentStep = step;
-  document.querySelectorAll('.flow-step').forEach(step => {
-    step.classList.remove('active');
-  });
-  document.querySelector(`.flow-step[data-step="${step}"]`).classList.add('active');
-}
-
-function showForm(formType) {
-  document.querySelectorAll('.reg-form').forEach(form => {
-    form.classList.remove('active');
-  });
-  document.getElementById(`${formType}-form`).classList.add('active');
-}
-
-// Form Submission Handling
+// Handle form submissions
 document.querySelectorAll('.reg-form').forEach(form => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formStatus = document.getElementById('form-status');
     
-    const formData = new FormData(form);
-    const data = {
-      type: registrationType,
-      timestamp: new Date().toISOString()
-    };
-
-    for (let [key, value] of formData.entries()) {
-      data[key] = value;
-    }
-
     try {
+      const formData = new FormData(form);
+      const data = {
+        type: form.id.replace('-form', ''),
+        timestamp: new Date().toISOString()
+      };
+
+      for (let [key, value] of formData.entries()) {
+        data[key] = value;
+      }
+
+      // Save to Firebase
       await db.ref('registrations').push(data);
+      
+      // Reset UI
+      form.reset();
+      form.classList.remove('active');
+      document.querySelector('.reg-option.active')?.classList.remove('active');
+      activeForm = null;
+      
+      // Show success message
       formStatus.textContent = 'Registration submitted successfully!';
       formStatus.style.color = 'green';
-      form.reset();
-      showStep(1);
       setTimeout(() => formStatus.textContent = '', 3000);
     } catch (error) {
       console.error('Error saving registration:', error);
       formStatus.textContent = 'Error submitting form. Please try again.';
       formStatus.style.color = 'red';
     }
+  });
+});
+
+// Toggle escort details
+document.querySelectorAll('#escort-needed').forEach(select => {
+  select.addEventListener('change', (e) => {
+    e.target.closest('.escort-section').querySelector('.escort-details')
+      .classList.toggle('active', e.target.value === 'yes');
   });
 });
 
