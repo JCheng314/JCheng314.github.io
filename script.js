@@ -24,6 +24,12 @@ const db = firebase.database(app);
 const tabLinks = document.querySelectorAll('nav ul li a');
 const tabContents = document.querySelectorAll('.tab-content');
 
+// Toggle the navigation menu on mobile
+document.querySelector('.hamburger').addEventListener('click', () => {
+  const navLinks = document.querySelector('nav ul');
+  navLinks.classList.toggle('show');
+});
+
 // Add click event listeners to the tab links
 tabLinks.forEach(link => {
     link.addEventListener('click', (e) => {
