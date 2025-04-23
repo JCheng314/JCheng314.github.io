@@ -173,58 +173,55 @@ document.querySelectorAll('#swimmer-random-escort').forEach(select => {
     });
   });
   
-  // Updated Form Submission Handler
-  document.querySelectorAll('.reg-form').forEach(form => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formStatus = document.getElementById('form-status');
-      
-      try {
-        const formData = new FormData(form);
-        const data = {
-          type: form.id.replace('-form', ''),
-          timestamp: new Date().toISOString()
-        };
-  
-        // Handle swimmer form
-        if (data.type === 'swimmer') {
-          data.random_escort = formData.get('random_escort');
-          if (data.random_escort === 'no') {
-            data.escort_name = formData.get('escort_name');
-          }
-        }
-        // Handle escort form
-        else if (data.type === 'escort') {
-          data.escort_random = formData.get('escort_random');
-          if (data.escort_random === 'no') {
-            data.escorting_for = formData.get('escorting_for');
-          }
-        }
-        // Handle other forms
-        else {
-          for (let [key, value] of formData.entries()) {
-            data[key] = value;
-          }
-        }
-  
-        await db.ref('registrations').push(data);
-        
-        // Reset UI
-        form.reset();
-        form.classList.remove('active');
-        document.querySelector('.reg-option.active')?.classList.remove('active');
-        activeForm = null;
-        
-        formStatus.textContent = 'Registration submitted successfully!';
-        formStatus.style.color = 'green';
-        setTimeout(() => formStatus.textContent = '', 3000);
-      } catch (error) {
-        console.error('Error saving registration:', error);
-        formStatus.textContent = 'Error submitting form. Please try again.';
-        formStatus.style.color = 'red';
+document.querySelectorAll('.reg-form').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formStatus = document.getElementById('form-status');
+    
+    try {
+      const formData = new FormData(form);
+      const data = {
+        type: form.id.replace('-form', ''),
+        timestamp: new Date().toISOString()
+      };
+
+      // First collect ALL form fields
+      for (let [key, value] of formData.entries()) {
+        data[key] = value;
       }
-    });
+
+      // Then handle special cases
+      if (data.type === 'swimmer') {
+        // Ensure escort_name is removed if not needed
+        if (data.random_escort === 'yes') {
+          delete data.escort_name;
+        }
+      }
+      else if (data.type === 'escort') {
+        // Ensure escorting_for is removed if not needed
+        if (data.escort_random === 'yes') {
+          delete data.escorting_for;
+        }
+      }
+
+      await db.ref('registrations').push(data);
+      
+      // Reset UI
+      form.reset();
+      form.classList.remove('active');
+      document.querySelector('.reg-option.active')?.classList.remove('active');
+      activeForm = null;
+      
+      formStatus.textContent = 'Registration submitted successfully!';
+      formStatus.style.color = 'green';
+      setTimeout(() => formStatus.textContent = '', 3000);
+    } catch (error) {
+      console.error('Error saving registration:', error);
+      formStatus.textContent = 'Error submitting form. Please try again.';
+      formStatus.style.color = 'red';
+    }
   });
+});
 
 function generateGallery() {
     const galleryContainer = document.getElementById('gallery-container');

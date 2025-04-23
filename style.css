@@ -402,6 +402,20 @@ input:disabled {
   display: block;
 }
 
+/* Add if you want specific styling for the watercraft field */
+.form-section label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
 .registration-container {
   max-width: 800px;
   margin: 0 auto;
