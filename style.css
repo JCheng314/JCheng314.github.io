@@ -1,4 +1,73 @@
 /* General Styles */
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Center the header images and maintain spacing */
+.header-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Add spacing between images */
+}
+
+.header-main-image {
+  max-width: 80%; /* Ensure the main image doesn't dominate smaller screens */
+}
+
+/* Style for the navigation bar */
+nav {
+  position: relative;
+  background-color: #333;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 10px 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 768px) {
+  nav ul {
+    display: none; /* Hide the nav links initially */
+    flex-direction: column; /* Stack links vertically */
+    background-color: #333;
+    position: absolute;
+    top: 50px; /* Adjust based on the header height */
+    left: 0;
+    width: 100%;
+  }
+
+  nav ul.show {
+    display: flex; /* Show links when toggled */
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    font-size: 18px;
+  }
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
