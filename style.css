@@ -1,8 +1,8 @@
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0 5%;
+  margin: 5%;
+  padding: 0;
   box-sizing: border-box;
   background-color: #f4f4f4;
   display: flex;
@@ -86,8 +86,8 @@ header h1 {
 }
 
 #overview .side-images img {
-  max-width: 30%; /* Adjusted from 300px */
-  height: auto;
+  max-width: auto; /* Adjusted from 300px */
+  height: 30%;
   object-fit: contain; /* Changed from cover */
   object-position: center;
   border-radius: 10px;
