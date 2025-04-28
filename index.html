@@ -9,12 +9,24 @@
 <body>
   <header>
     <div class="header-images">
-      <img src="assets/regatta.jpg" alt="Left Image" class="header-side-image">
       <div class="header-center">
         <img src="assets/background.JPG" alt="Main Image" class="header-main-image">
         <h1>Swim Across Columbia</h1>
+        <div class="stats-container">
+          <div class="stat-box">
+            <span class="stat-number">~ 6 Miles</span>
+            <span class="stat-label">Challenge</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">~ 65°F</span>
+            <span class="stat-label">Water Temp</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">∞ History</span>
+            <span class="stat-label">History</span>
+          </div>
+        </div>
       </div>
-      <img src="assets/CMHLogo.png" alt="Right Image" class="header-side-image">
     </div>
   </header>
 
@@ -22,7 +34,7 @@
     <ul>
       <li><a href="#" data-tab="overview">Event Overview</a></li>
       <li><a href="#" data-tab="records">2024 SAC</a></li>
-      <li><a href="#" data-tab="sponsor">Sponsors</a></li>
+      <li><a href="#" data-tab="sponsor">Partners</a></li>
       <li><a href="#" data-tab="signup">Register</a></li>
       <li><a href="#" data-tab="advertise">Staying in Astoria</a></li>
       <li><a href="#" data-tab="merch">Merch</a></li>
@@ -32,6 +44,10 @@
   <main>
     <div id="overview" class="tab-content active">
       <h2>Event Overview</h2>
+      <div class="side-images">
+        <img src="assets/regatta.jpg" alt="Left Image">
+        <img src="assets/CMHLogo.png" alt="Right Image">
+      </div>
       <div class="overview-content">
           <h3>Swim Across the Columbia</h3>
           <p><strong>Knappton Cove, WA to Astoria, OR</strong></p>
@@ -103,7 +119,7 @@
       </div>
     </div>
     <div id="sponsor" class="tab-content">
-      <h2>Our Sponsors</h2>
+      <h2>Our Strategic Partners</h2>
       <div class="sponsor-grid">
           <a href="https://www.astoriaregatta.com/" target="_blank" class="sponsor-card">
               Regatta 2025
@@ -112,13 +128,10 @@
             Columbia Memorial Hospital
           </a>
           <a href="https://northcoastrunners.com/" target="_blank" class="sponsor-card">
-            Kevin Staple and Northwest Runners Supply
+            Kevin Staples and Northwest Runners Supply
           </a>
           <a href="https://www.crmm.org/" target="_blank" class="sponsor-card">
             Columbia River Maritime Museum
-          </a>
-          <a href="https://www.arrowtug.com/" target="_blank" class="sponsor-card">
-            Arrow 2 – Pier 39 Astoria
           </a>
           <a href="https://www.knapptoncoveheritagecenter.org/" target="_blank" class="sponsor-card">
             Knappton Cove Heritage Center and the Bell Family
@@ -133,6 +146,10 @@
       <ul>
         <li><a href="https://www.koin.com/sports/astoria-er-doctor-headlines-swim-across-the-columbia-river/" target="_blank">2024 Winner: Astoria ER doctor headlines swim across the Columbia River</a></li>
         <li><a href="https://www.dailyastorian.com/news/local/swimmers-brave-splash-across-the-columbia/article_5cd3d4e0-584e-11ef-ae31-c764f035d6ab.html" target="_blank">2024 Event Review</a></li>
+        <li><a href="https://www.kptv.com/2024/08/12/swimmers-cross-columbia-river-astoria-raise-money-hospital/" target="_blank">Swimmers cross Columbia River at Astoria to raise money for hospital</a></li>
+        <li><a href="https://sports.yahoo.com/swimmers-brave-splash-across-columbia-035900436.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuYmluZy5jb20v&guce_referrer_sig=AQAAACv7MLdxrgaP2Xrnt5WpypAwrQzhvl7-qR7UusnyGlmHtsdknqAiAIEhCPYCCzej0gTq4DarcKnumUISUOclRuzF3LnZeg5jAtGG6Oc9i0doknyjtB39ufVJVt8HNZdlOt7TK0NSGg5sbP86DisI_18Tt5BS4f1jiwCXEhuryujC" target="_blank">Swimmers brave splash across the Columbia - Yahoo Sports</a></li>
+        <li><a href="https://seasidesignal.com/2024/08/13/swimmers-brave-splash-across-the-columbia/" target="_blank">Swimmers brave splash across the Columbia | Seaside Signal</a></li>
+        <li><a href="https://www.opb.org/article/2024/08/17/astoria-swim-across-columbia/" target="_blank">Oregon swimmer braves a 5-mile swim across the Columbia River — and her own trauma - OPB</a></li>
       </ul>
       <h2>2024 Event Gallery</h2>
       <div class="gallery-container" id="gallery-container"></div>
@@ -143,9 +160,9 @@
         <!-- Changed structure -->
         <div class="registration-selector">
           <button class="reg-option" data-type="swimmer">Swimmer Registration</button>
+          <button class="reg-option" data-type="dryswim">Dry Swim Registration</button>
           <button class="reg-option" data-type="escort">Escort Registration</button>
           <button class="reg-option" data-type="volunteer">Volunteer Registration</button>
-          <button class="reg-option" data-type="dryswim">Dry Swim Registration</button>
         </div>
     
         <!-- Forms container added -->

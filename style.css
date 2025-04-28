@@ -9,43 +9,88 @@ body {
   align-items: center; /* Center content horizontally */
 }
 
-/* Replace existing header styles with this */
+/* Updated Header Styles */
 .header-images {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  width: 100%;
-  height: 300px; /* Fixed container height */
-}
-
-.header-side-image {
-  flex: 1;
-  height: 100%;
-  object-fit: cover;
+  height: 70vh; /* Adjust height as needed */
+  position: relative;
 }
 
 .header-center {
-  flex: 2;
-  position: relative;
-  height: 100%;
-}
-
-.header-main-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  position: relative;
 }
 
 header h1 {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  font-size: 4rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
   z-index: 2;
-  margin: 0;
-  font-size: 3rem;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.stats-container {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2rem;
+  z-index: 2;
+  width: 80%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: #0056b3;
-  text-shadow: 2px 2px 4px rgba(11, 109, 208, 0.388);
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Move side images to overview */
+#overview .side-images {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem auto;
+  max-width: 1200px;
+  gap: 2rem;
+}
+
+#overview .side-images img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 nav {
