@@ -358,3 +358,21 @@ window.addEventListener('click', (e) => {
     successModal.style.display = 'none';
   }
 });
+
+document.querySelectorAll('.contact-links .tab-switcher').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetTab = link.getAttribute('data-tab');
+    
+    // Remove active classes
+    tabLinks.forEach(link => link.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+    
+    // Find and activate the target tab
+    const targetLink = document.querySelector(`[data-tab="${targetTab}"]`);
+    if (targetLink) {
+      targetLink.classList.add('active');
+      document.getElementById(targetTab).classList.add('active');
+    }
+  });
+});
