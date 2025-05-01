@@ -239,3 +239,122 @@ function generateGallery() {
 }
 
 document.querySelector('[data-tab="records"]').addEventListener('click', generateGallery);
+
+// Modal Elements
+const waiverModal = document.getElementById('waiverModal');
+const successModal = document.getElementById('successModal');
+const closeButtons = document.querySelectorAll('.close-modal');
+const cancelWaiver = document.getElementById('cancel-waiver');
+const confirmWaiver = document.getElementById('confirm-waiver');
+const closeSuccess = document.querySelector('.close-success');
+
+// Form Elements
+const swimmerForm = document.getElementById('swimmer-form');
+const waiverAgree = document.getElementById('waiver-agree');
+const waiverInitials = document.getElementById('waiver-initials');
+
+// Form submission handler for swimmer registration
+if (swimmerForm) {
+  swimmerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Show waiver modal
+    waiverModal.style.display = 'block';
+    
+    // Reset waiver inputs
+    if (waiverAgree) waiverAgree.checked = false;
+    if (waiverInitials) waiverInitials.value = '';
+  });
+}
+
+// Close modals when clicking the X button
+closeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    waiverModal.style.display = 'none';
+    successModal.style.display = 'none';
+  });
+});
+
+// Cancel waiver button
+if (cancelWaiver) {
+  cancelWaiver.addEventListener('click', () => {
+    waiverModal.style.display = 'none';
+  });
+}
+
+// Confirm waiver button (submits the form)
+if (confirmWaiver) {
+  confirmWaiver.addEventListener('click', async () => {
+    // Validate agreement checkbox and initials
+    if (!waiverAgree.checked) {
+      alert('You must agree to the terms of the waiver to proceed.');
+      return;
+    }
+    
+    if (!waiverInitials.value.trim()) {
+      alert('Please enter your initials to confirm agreement.');
+      return;
+    }
+    
+    // Close waiver modal
+    waiverModal.style.display = 'none';
+    
+    // Get form data from the swimmer registration form
+    const formData = new FormData(swimmerForm);
+    const data = {
+      type: 'swimmer',
+      timestamp: new Date().toISOString(),
+      waiver_agreed: true,
+      waiver_initials: waiverInitials.value.trim().toUpperCase()
+    };
+    
+    // Add form fields to data object
+    for (let [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+    
+    // Ensure escort_name is removed if not needed
+    if (data.random_escort === 'yes') {
+      delete data.escort_name;
+    }
+    
+    try {
+      // Submit data to Firebase
+      await db.ref('registrations').push(data);
+      
+      // Reset form
+      swimmerForm.reset();
+      
+      // Show success modal
+      successModal.style.display = 'block';
+      
+      // Hide the form
+      document.querySelector('.reg-option.active')?.classList.remove('active');
+      swimmerForm.classList.remove('active');
+      activeForm = null;
+      
+    } catch (error) {
+      console.error('Error saving registration:', error);
+      const formStatus = document.getElementById('form-status');
+      formStatus.textContent = 'Error submitting form. Please try again.';
+      formStatus.style.color = 'red';
+    }
+  });
+}
+
+// Close success modal when clicking OK
+if (closeSuccess) {
+  closeSuccess.addEventListener('click', () => {
+    successModal.style.display = 'none';
+  });
+}
+
+// Close modals when clicking outside of them
+window.addEventListener('click', (e) => {
+  if (e.target === waiverModal) {
+    waiverModal.style.display = 'none';
+  }
+  if (e.target === successModal) {
+    successModal.style.display = 'none';
+  }
+});

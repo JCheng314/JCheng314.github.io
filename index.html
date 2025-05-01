@@ -274,6 +274,51 @@
     </div>
     </main>
   </div>
+  <!-- Add this at the end of the body, before the closing </body> tag -->
+
+  <!-- Waiver Modal -->
+  <div class="modal" id="waiverModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Swim Across Columbia Waiver</h3>
+      
+      <!-- PDF Viewer -->
+      <div class="pdf-container">
+        <iframe id="waiver-pdf" src="assets/waiver.pdf" width="100%" height="400px"></iframe>
+      </div>
+      
+      <!-- Agreement Section -->
+      <div class="waiver-agreement">
+        <div class="agreement-checkbox">
+          <input type="checkbox" id="waiver-agree" name="waiver-agree" required>
+          <label for="waiver-agree">I have read and agree to the terms outlined in the attached waiver. I am aware that this open-water swim involves risks of injury and exposure to the elements. I voluntarily accept these risks and release Columbia Memorial Hospital, its employees, and volunteers from any and all liability for any injury, loss, or damage I may sustain while participating in this swim.</label>
+        </div>
+        
+        <!-- Initials Section -->
+        <div class="initials-section">
+          <label for="waiver-initials">Please enter your initials to confirm:</label>
+          <input type="text" id="waiver-initials" name="waiver-initials" maxlength="5" required placeholder="Your initials">
+        </div>
+        
+        <div class="waiver-buttons">
+          <button id="cancel-waiver" class="cancel-btn">Cancel</button>
+          <button id="confirm-waiver" class="submit-btn">I Agree</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal (shown after successful submission) -->
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="success-message">
+        <h3>Registration Submitted Successfully!</h3>
+        <p>Thank you for registering for the Swim Across Columbia. However, your registration is not complete until you made your payment <a href="https://interland3.donorperfect.net/weblink/weblink.aspx?name=E329858&id=28" target="_blank">Here</a>.</p>
+        <button class="submit-btn close-success">OK</button>
+      </div>
+    </div>
+  </div>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script src="script.js"></script>
