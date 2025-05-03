@@ -376,3 +376,120 @@ document.querySelectorAll('.contact-links .tab-switcher').forEach(link => {
     }
   });
 });
+
+// Add these to your existing script.js file
+
+// Fix 1: Mobile Menu Toggle
+// Add this HTML first to your index.html right after the <nav> opening tag:
+// <div class="mobile-menu-toggle">Menu ☰</div>
+
+// Then add this JavaScript:
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navMenu = document.querySelector('nav ul');
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('mobile-visible');
+    mobileMenuToggle.classList.toggle('active');
+  });
+}
+
+// Fix 2: Improve form select interactions on mobile
+document.querySelectorAll('select').forEach(select => {
+  select.addEventListener('change', (e) => {
+    // Add a class to indicate the select has been interacted with
+    e.target.classList.add('selected');
+  });
+});
+
+// Fix 3: Improve gallery image loading for mobile
+// Load gallery images lazily when the tab becomes visible
+function lazyLoadGallery() {
+  const galleryContainer = document.getElementById('gallery-container');
+  if (!galleryContainer || galleryContainer.dataset.loaded === 'true') return;
+  
+  // Mark as loaded to prevent duplicate loading
+  galleryContainer.dataset.loaded = 'true';
+  
+  const totalImages = 89; // Your actual number of images
+  const batchSize = 10; // Load images in batches for better performance
+  let currentBatch = 0;
+  
+  function loadNextBatch() {
+    const startIdx = currentBatch * batchSize + 1;
+    const endIdx = Math.min((currentBatch + 1) * batchSize, totalImages);
+    
+    for (let i = startIdx; i <= endIdx; i++) {
+      const imgNumber = i.toString().padStart(2, '0');
+      const img = document.createElement('img');
+      img.className = 'gallery-img';
+      img.loading = 'lazy'; // Native lazy loading
+      img.src = `assets/img_${imgNumber}.jpg`;
+      img.alt = `2024 Event Photo ${i}`;
+      galleryContainer.appendChild(img);
+    }
+    
+    currentBatch++;
+    if (currentBatch * batchSize < totalImages) {
+      // Load next batch soon
+      setTimeout(loadNextBatch, 200);
+    }
+  }
+  
+  // Start loading
+  loadNextBatch();
+}
+
+// Replace existing gallery generation with lazy loading
+document.querySelector('[data-tab="records"]').addEventListener('click', lazyLoadGallery);
+
+// Fix 4: Better mobile form validation feedback
+document.querySelectorAll('.reg-form').forEach(form => {
+  const inputs = form.querySelectorAll('input, select');
+  
+  inputs.forEach(input => {
+    // Add visual feedback as the user types/interacts
+    input.addEventListener('input', () => {
+      if (input.checkValidity()) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+      } else {
+        input.classList.remove('valid');
+        // Only mark as invalid if the user has interacted and left
+        if (input.dataset.touched === 'true') {
+          input.classList.add('invalid');
+        }
+      }
+    });
+    
+    // Mark fields as touched when the user finishes interacting
+    input.addEventListener('blur', () => {
+      input.dataset.touched = 'true';
+      if (!input.checkValidity()) {
+        input.classList.add('invalid');
+      }
+    });
+  });
+});
+
+// Fix 5: Mobile-friendly modal handling
+// Close modals when tapping outside on mobile
+const modals = document.querySelectorAll('.modal');
+
+modals.forEach(modal => {
+  // Add touchstart listener specifically for mobile
+  modal.addEventListener('touchstart', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+});
+
+// Fix 6: Optimize page transitions on mobile
+// Add smooth transitions between tabs
+document.querySelectorAll('[data-tab]').forEach(tabLink => {
+  tabLink.addEventListener('click', () => {
+    // Add scroll to top for better mobile experience
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});

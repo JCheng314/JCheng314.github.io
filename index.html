@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Swim Across Columbia</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,7 @@
     <header>
       <div class="header-images">
         <div class="header-center">
-          <img src="assets/background.JPG" alt="Main Image" class="header-main-image">
+          <img src="assets/background.JPG" alt="Main Image" class="header-main-image" loading="lazy">
           <h1>Swim Across Columbia</h1>
           <div class="stats-container">
             <div class="stat-box">
@@ -32,6 +32,7 @@
     </header>
 
     <nav>
+      <div class="mobile-menu-toggle">Menu ☰</div>
       <ul>
         <li><a href="#" data-tab="overview">Event Overview</a></li>
         <li><a href="#" data-tab="records">2024 SAC</a></li>
@@ -52,10 +53,10 @@
         <!-- Mobile-only logo grid -->
         <div class="mobile-logo-grid">
           <div class="logo-wrapper">
-            <img src="assets/regatta.jpg" alt="Regatta Festival Logo">
+            <img src="assets/regatta.jpg" alt="Regatta Festival Logo" loading="lazy">
           </div>
           <div class="logo-wrapper">
-            <img src="assets/CMHLogo.png" alt="CMH Logo">
+            <img src="assets/CMHLogo.png" alt="CMH Logo" loading="lazy">
           </div>
         </div>
         
@@ -64,7 +65,7 @@
           <!-- Left logo -->
           <div class="side-logo left-logo">
             <div class="logo-wrapper">
-              <img src="assets/regatta.jpg" alt="Regatta Festival Logo">
+              <img src="assets/regatta.jpg" alt="Regatta Festival Logo" loading="lazy">
             </div>
           </div>
           <div class="overview-content">
@@ -79,7 +80,7 @@
               <h4>Location & Course</h4>
               <p>The course is approximately 6 miles (10 km) beginning on the north shore of the lower Columbia River in Knappton Cove. Swimmers will enter the water on the beach directly in front of the Knappton Cove Heritage Center. The finish is at the Astoria City Wharf adjacent to the Columbia River Maritime Museum. The distance is 5.1 miles as the crow flies but swimmers will be led upriver with the incoming tide which will lengthen this adventure swim to well over 6 miles.</p>
               <div class="overview-image">
-                <img src="assets/sacRoute.png" alt="Event Route Map">
+                <img src="assets/sacRoute.png" alt="Event Route Map" loading="lazy">
               </div>
               <p>Water temperature is expected to be 64–70 degrees Fahrenheit.</p>
               
@@ -136,7 +137,7 @@
           </div>
           <div class="side-logo right-logo">
             <div class="logo-wrapper">
-              <img src="assets/CMHLogo.png" alt="CMH Logo">
+              <img src="assets/CMHLogo.png" alt="CMH Logo" loading="lazy">
             </div>
           </div>
         </div>
@@ -389,5 +390,30 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script src="script.js"></script>
+  <script>
+    // Prevent zoom on focusing inputs on mobile
+    document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+    });
+    
+    // Detect when the mobile keyboard is visible
+    const originalHeight = window.innerHeight;
+    window.addEventListener('resize', () => {
+      // If height reduced significantly, keyboard is likely visible
+      if (window.innerHeight < originalHeight * 0.75) {
+        // Scroll to the focused element
+        if (document.activeElement.tagName === 'INPUT' || 
+            document.activeElement.tagName === 'SELECT' || 
+            document.activeElement.tagName === 'TEXTAREA') {
+          setTimeout(() => {
+            document.activeElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }, 100);
+        }
+      }
+    });
+  </script>
 </body>
 </html>

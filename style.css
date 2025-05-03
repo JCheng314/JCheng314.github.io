@@ -76,36 +76,6 @@ main {
   margin-top: 20px;
 }
 
-/* Media query for mobile responsiveness */
-@media (max-width: 768px) {
-  .header-images {
-    height: 40vh;
-  }
-
-  header h1 {
-    font-size: 2.5rem;
-    top: 5%;
-  }
-
-  .stats-container {
-    flex-direction: column;
-    align-items: center;
-    bottom: 5%;
-  }
-
-  .stat-box {
-    min-width: 150px;
-    width: 90%;
-  }
-  .stat-number {
-    font-size: 2rem;
-  }
-
-  .stat-label {
-    font-size: 1rem;
-  }
-}
-
 .stats-container {
   position: absolute;
   bottom: 10%;
@@ -408,41 +378,6 @@ input:disabled {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Simple and clean mobile layout */
-@media (max-width: 768px) {
-  /* Switch displays for mobile */
-  .overview-three-column .side-logo {
-    display: none; /* Hide side logos on mobile */
-  }
-  
-  .mobile-logo-grid {
-    display: flex; /* Show mobile logo grid */
-  }
-  
-  .overview-three-column {
-    flex-direction: column;
-  }
-  
-  .mobile-logo-grid .logo-wrapper {
-    width: 48%; /* Almost half width, with a small gap */
-    padding: 10px;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .mobile-logo-grid img {
-    max-width: 100%;
-    max-height: 80px;
-    object-fit: contain;
-  }
-  
-  /* Add more spacing to content on mobile */
-  .overview-content {
-    padding: 0;
-  }
-}
-
 /* Map Container */
 .map-container {
   width: 100%;
@@ -523,19 +458,6 @@ input:disabled {
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   border-color: #007bff;
   color: #007bff;
-}
-
-@media (max-width: 768px) {
-  .sponsor-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      padding: 20px;
-      gap: 15px;
-  }
-  
-  .sponsor-card {
-      padding: 20px;
-      font-size: 0.95rem;
-  }
 }
 
 /* Registration Flow */
@@ -961,9 +883,232 @@ input:focus:invalid, select:focus:invalid {
   padding-left: 5px;
 }
 
-/* Responsive Adjustments */
+/* INTEGRATED MOBILE QUERIES 
+   This file combines your existing mobile styles with new enhancements.
+   You can replace ALL your current media queries with this complete set. */
+
+/* Mobile Menu Toggle - Add this class outside of media queries */
+.mobile-menu-toggle {
+  display: none;
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 4px;
+}
+
+.mobile-menu-toggle.active {
+  background-color: #003d7a;
+}
+
+/* Form validation feedback - Add outside media queries */
+input.valid {
+  border-color: #28a745;
+  background-color: rgba(40, 167, 69, 0.05);
+}
+
+input.invalid {
+  border-color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* ==== TABLET AND MOBILE STYLES (768px and below) ==== */
 @media (max-width: 768px) {
+  /* HEADER & GENERAL LAYOUT - Preserved from original */
+  .header-images {
+    height: 40vh;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    top: 5%;
+    background-color: rgba(255, 255, 255, 0.7); /* New: improved visibility */
+    padding: 10px;
+    border-radius: 5px;
+    width: auto;
+    max-width: 90%;
+  }
+
+  /* NAVIGATION - Enhanced for mobile */
+  .mobile-menu-toggle {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul.mobile-visible {
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* STATS CONTAINER - Improved from original */
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+    bottom: 5%;
+    gap: 0.5rem; /* Reduced gap */
+    width: 90%;
+  }
+
+  .stat-box {
+    min-width: 150px;
+    width: 90%;
+    padding: 1rem; /* Reduced padding */
+  }
+
+  .stat-number {
+    font-size: 1.8rem; /* Smaller font */
+  }
+
+  /* OVERVIEW SECTION - Preserved from original + enhancements */
+  /* Switch displays for mobile */
+  .overview-three-column .side-logo {
+    display: none; /* Hide side logos on mobile */
+  }
+  
+  .mobile-logo-grid {
+    display: flex; /* Show mobile logo grid */
+  }
+  
+  .overview-three-column {
+    flex-direction: column;
+  }
+  
+  /* Mobile Logo Grid - Preserved styling */
+  .mobile-logo-grid .logo-wrapper {
+    width: 48%; /* Almost half width, with a small gap */
+    padding: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mobile-logo-grid img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+  }
+  
+  /* Add more spacing to content on mobile */
+  .overview-content {
+    padding: 0;
+  }
+
+  /* Improve mobile overview list readability */
+  #overview ul li, #overview ol li {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+  /* Better spacing for the mobile logo grid */
+  .mobile-logo-grid {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  /* CONTACT LAYOUT - Improved */
   .contact-container {
     flex-direction: column;
+    gap: 20px;
+  }
+  
+  .contact-card, .contact-info {
+    width: 100%;
+  }
+
+  /* MODAL SCALING - New */
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+  
+  .pdf-container iframe {
+    height: 300px;
+  }
+  
+  /* GALLERY IMAGE SIZING - New */
+  .gallery-img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+
+  /* SPONSOR STYLES - Preserved & enhanced */
+  .sponsor-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  .sponsor-card {
+    padding: 20px;
+    font-size: 0.95rem;
+  }
+
+  /* FORM & AGREEMENT - New enhancements */
+  /* Waiver agreement better spacing */
+  .agreement-checkbox {
+    align-items: flex-start;
+  }
+  
+  .agreement-checkbox input[type="checkbox"] {
+    margin-top: 5px;
+  }
+  
+  /* Ensure form fields are easier to interact with on touch devices */
+  input, select, button {
+    min-height: 44px; /* Touch-friendly */
+  }
+}
+
+/* ==== SMALL MOBILE DEVICES (480px and below) ==== */
+@media (max-width: 480px) {
+  /* REGISTRATION LAYOUT - New enhancement */
+  .registration-selector {
+    grid-template-columns: 1fr;
+  }
+  
+  /* SPONSOR CARDS - New enhancement */
+  .sponsor-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  /* FORM FIELD WIDTH - New enhancement */
+  .form-section input[type="text"],
+  .form-section input[type="email"],
+  .form-section input[type="tel"],
+  .form-section select {
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+  }
+  
+  /* FORM SPACING & BUTTONS - New enhancement */
+  .form-section {
+    gap: 10px;
+  }
+  
+  .submit-btn, .reg-option {
+    padding: 12px;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  /* HEADER - Additional mobile adjustments */
+  header h1 {
+    font-size: 1.8rem; /* Even smaller on very small screens */
   }
 }
