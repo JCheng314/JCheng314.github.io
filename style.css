@@ -18,18 +18,34 @@ body {
   margin: 0 auto;
 }
 
-/* Update header styles */
 header {
   width: 100%;
   position: relative;
-  margin-bottom: 0; /* Remove margin between header and nav */
+  margin-bottom: 0;
 }
 
+/* Reposition the title to be at the top of the header */
+header h1 {
+  position: relative; /* Change from absolute to relative */
+  top: auto;
+  left: auto;
+  transform: none;
+  text-align: center;
+  color: #111ce9;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  width: 100%;
+  padding: 15px 20px;
+  margin: 0;
+  background-color: #f4f4f4; /* Match your site background */
+}
+
+/* Then position the image and stats below the title */
 .header-images {
-  height: 50vh; /* Reduce height to 50% of viewport */
+  height: 40vh;
   width: 100%;
   position: relative;
-  overflow: hidden; /* This prevents image overflow */
+  overflow: hidden;
 }
 
 .header-center {
@@ -43,20 +59,6 @@ header {
   height: 100%;
   object-fit: cover; /* This ensures the image covers the area without distortion */
   object-position: center;
-}
-
-header h1 {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 4rem;
-  text-align: center;
-  color: #111ce9;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
-  z-index: 2;
-  width: 100%;
-  padding: 0 20px;
 }
 
 /* Update navigation positioning */
@@ -917,18 +919,13 @@ input.invalid {
 /* ==== TABLET AND MOBILE STYLES (768px and below) ==== */
 @media (max-width: 768px) {
   /* HEADER & GENERAL LAYOUT - Preserved from original */
-  .header-images {
-    height: 40vh;
-  }
-
   header h1 {
     font-size: 2.5rem;
-    top: 5%;
-    background-color: rgba(255, 255, 255, 0.7); /* New: improved visibility */
-    padding: 10px;
-    border-radius: 5px;
-    width: auto;
-    max-width: 90%;
+    padding: 10px 20px;
+  }
+  
+  .header-images {
+    height: 45vh; /* Slightly taller on mobile */
   }
 
   /* NAVIGATION - Enhanced for mobile */
@@ -955,21 +952,32 @@ input.invalid {
 
   /* STATS CONTAINER - Improved from original */
   .stats-container {
-    flex-direction: column;
-    align-items: center;
-    bottom: 5%;
-    gap: 0.5rem; /* Reduced gap */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: 10px;
+    z-index: 1;
     width: 90%;
+    max-width: 300px; /* Limit width on mobile */
+    justify-content: center;
   }
-
+  
   .stat-box {
-    min-width: 150px;
-    width: 90%;
-    padding: 1rem; /* Reduced padding */
+    min-width: auto;
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
   }
-
+  
   .stat-number {
-    font-size: 1.8rem; /* Smaller font */
+    font-size: 1.8rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
   }
 
   /* OVERVIEW SECTION - Preserved from original + enhancements */
@@ -1109,6 +1117,7 @@ input.invalid {
 
   /* HEADER - Additional mobile adjustments */
   header h1 {
-    font-size: 1.8rem; /* Even smaller on very small screens */
+    font-size: 2rem;
+    padding: 8px 10px;
   }
 }
