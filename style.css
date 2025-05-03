@@ -334,7 +334,7 @@ input:disabled {
   align-items: center; /* Force full-width centering */
 }
 
-/* Updated Three-column layout with better mobile support */
+/* Fixed Three-column layout with proper mobile support */
 .overview-three-column {
   display: flex;
   gap: 20px;
@@ -396,33 +396,31 @@ input:disabled {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Mobile logo grid - HIDDEN BY DEFAULT on desktop */
+.mobile-logo-grid {
+  display: none; /* Hidden on desktop */
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Simple and clean mobile layout */
 @media (max-width: 768px) {
-  /* Container for logo grid that only appears on mobile */
-  .mobile-logo-grid {
-    display: none; /* Hidden by default */
+  /* Switch displays for mobile */
+  .overview-three-column .side-logo {
+    display: none; /* Hide side logos on mobile */
   }
   
-  /* On mobile, restructure the layout */
+  .mobile-logo-grid {
+    display: flex; /* Show mobile logo grid */
+  }
+  
   .overview-three-column {
     flex-direction: column;
-  }
-  
-  /* Hide the side logos on mobile */
-  .side-logo {
-    display: none;
-  }
-  
-  /* Show and style the mobile logo grid */
-  .mobile-logo-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   .mobile-logo-grid .logo-wrapper {
@@ -431,9 +429,6 @@ input:disabled {
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   
   .mobile-logo-grid img {
