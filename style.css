@@ -26,18 +26,18 @@ header {
 
 /* Reposition the title to be at the top of the header */
 header h1 {
-  position: relative; /* Change from absolute to relative */
-  top: auto;
-  left: auto;
-  transform: none;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
   text-align: center;
   color: #111ce9;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
   z-index: 2;
   width: 100%;
-  padding: 15px 20px;
+  padding: 0 20px;
   margin: 0;
-  background-color: #f4f4f4; /* Match your site background */
 }
 
 /* Then position the image and stats below the title */
@@ -919,13 +919,31 @@ input.invalid {
 /* ==== TABLET AND MOBILE STYLES (768px and below) ==== */
 @media (max-width: 768px) {
   /* HEADER & GENERAL LAYOUT - Preserved from original */
-  header h1 {
-    font-size: 2.5rem;
-    padding: 10px 20px;
+  header {
+    display: flex;
+    flex-direction: column;
   }
   
+  /* Move title out of image for mobile only */
+  header h1 {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    order: 1; /* Place at top */
+    font-size: 2.5rem;
+    text-align: center;
+    width: 100%;
+    background-color: #f4f4f4;
+    padding: 15px 20px;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Position image and stats below title on mobile */
   .header-images {
-    height: 45vh; /* Slightly taller on mobile */
+    order: 2; /* Place below title */
+    height: 40vh;
   }
 
   /* NAVIGATION - Enhanced for mobile */
@@ -957,12 +975,10 @@ input.invalid {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
+    flex-direction: column;
     gap: 10px;
-    z-index: 1;
     width: 90%;
-    max-width: 300px; /* Limit width on mobile */
-    justify-content: center;
+    max-width: 300px;
   }
   
   .stat-box {
