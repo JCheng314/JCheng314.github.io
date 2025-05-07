@@ -208,7 +208,7 @@ document.querySelector('[data-tab="records"]').addEventListener('click', generat
 
 // Modified form submission handler for swimmer registration
 if (swimmerForm) {
-  swimmerForm.addEventListener('button', async (e) => {
+  swimmerForm.addEventListener('nextstep', async (e) => {
     e.preventDefault();
     
     // Show waiver modal - don't submit data yet
