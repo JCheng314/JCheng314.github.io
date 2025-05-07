@@ -20,6 +20,19 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.database(app);
 
+// Modal Elements
+const waiverModal = document.getElementById('waiverModal');
+const successModal = document.getElementById('successModal');
+const closeButtons = document.querySelectorAll('.close-modal');
+const cancelWaiver = document.getElementById('cancel-waiver');
+const confirmWaiver = document.getElementById('confirm-waiver');
+const closeSuccess = document.querySelector('.close-success');
+
+// Swimmer Form Elements
+const swimmerForm = document.getElementById('swimmer-form');
+const waiverAgree = document.getElementById('waiver-agree');
+const waiverInitials = document.getElementById('waiver-initials');
+
 // Get all tab links and content sections
 const tabLinks = document.querySelectorAll('nav ul li a');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -188,24 +201,14 @@ function generateGallery() {
 
 document.querySelector('[data-tab="records"]').addEventListener('click', generateGallery);
 
-// Modal Elements
-const waiverModal = document.getElementById('waiverModal');
-const successModal = document.getElementById('successModal');
-const closeButtons = document.querySelectorAll('.close-modal');
-const cancelWaiver = document.getElementById('cancel-waiver');
-const confirmWaiver = document.getElementById('confirm-waiver');
-const closeSuccess = document.querySelector('.close-success');
 
-// Form Elements
-const swimmerForm = document.getElementById('swimmer-form');
-const waiverAgree = document.getElementById('waiver-agree');
-const waiverInitials = document.getElementById('waiver-initials');
+
 
 // Replace the swimmer form submission code in your script.js file with this code
 
 // Modified form submission handler for swimmer registration
 if (swimmerForm) {
-  swimmerForm.addEventListener('submit', async (e) => {
+  swimmerForm.addEventListener('nextstep', async (e) => {
     e.preventDefault();
     
     // Show waiver modal - don't submit data yet
