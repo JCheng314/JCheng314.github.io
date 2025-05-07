@@ -61,59 +61,7 @@ document.querySelectorAll('.tab-switcher').forEach(link => {
         }
     });
 });
-// const randomEscortCheckbox = document.getElementById('random-escort');
-// const accompanyingNameInput = document.getElementById('accompanying-name');
 
-// function updateEscortFields() {
-//     if (randomEscortCheckbox.checked) {
-//         accompanyingNameInput.value = '';
-//         accompanyingNameInput.disabled = true;
-//     } else {
-//         accompanyingNameInput.disabled = false;
-//     }
-// }
-
-// // Initial check on page load
-// updateEscortFields();
-
-// // Add event listener for checkbox changes
-// randomEscortCheckbox.addEventListener('change', updateEscortFields);
-// const form = document.getElementById('signup-form');
-// const formStatus = document.getElementById('form-status');
-
-// form.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-  
-//     // Get form data
-//     const firstName = document.getElementById('first-name').value;
-//     const lastName = document.getElementById('last-name').value;
-//     const email = document.getElementById('email').value;
-//     const phone = document.getElementById('phone').value;
-//     const registrationType = document.querySelector('input[name="registrationType"]:checked').value;
-//     const randomEscort = document.getElementById('random-escort').checked;
-//     const accompanyingName = document.getElementById('accompanying-name').value;
-  
-//     // Save data to Firestore
-//     // Push data to Realtime Database
-//     db.ref('signups').push({
-//         registrationType: registrationType,
-//         firstName: firstName,
-//         lastName: lastName,
-//         email: email,
-//         phone: phone,
-//         randomEscort: randomEscort,
-//         accompanyingName: accompanyingName,
-//         timestamp: new Date().toISOString()
-//     })
-//     .then(() => {
-//         formStatus.textContent = 'Thank you for signing up!';
-//         form.reset();
-//     })
-//     .catch((error) => {
-//         console.error('Error saving data:', error);
-//         formStatus.textContent = 'Oops! Something went wrong. Please try again.';
-//     });
-// });
 // Registration Logic - New implementation
 let activeForm = null;
 
@@ -253,12 +201,14 @@ const swimmerForm = document.getElementById('swimmer-form');
 const waiverAgree = document.getElementById('waiver-agree');
 const waiverInitials = document.getElementById('waiver-initials');
 
-// Form submission handler for swimmer registration
+// Replace the swimmer form submission code in your script.js file with this code
+
+// Modified form submission handler for swimmer registration
 if (swimmerForm) {
   swimmerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Show waiver modal
+    // Show waiver modal - don't submit data yet
     waiverModal.style.display = 'block';
     
     // Reset waiver inputs
@@ -267,22 +217,7 @@ if (swimmerForm) {
   });
 }
 
-// Close modals when clicking the X button
-closeButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    waiverModal.style.display = 'none';
-    successModal.style.display = 'none';
-  });
-});
-
-// Cancel waiver button
-if (cancelWaiver) {
-  cancelWaiver.addEventListener('click', () => {
-    waiverModal.style.display = 'none';
-  });
-}
-
-// Confirm waiver button (submits the form)
+// Modified confirm waiver button (submits the form with all data at once)
 if (confirmWaiver) {
   confirmWaiver.addEventListener('click', async () => {
     // Validate agreement checkbox and initials
@@ -301,25 +236,36 @@ if (confirmWaiver) {
     
     // Get form data from the swimmer registration form
     const formData = new FormData(swimmerForm);
+    
+    // Create a single data object with all information
     const data = {
       type: 'swimmer',
       timestamp: new Date().toISOString(),
+      
+      // Add waiver information
       waiver_agreed: true,
       waiver_initials: waiverInitials.value.trim().toUpperCase()
     };
     
-    // Add form fields to data object
+    // Add swimmer form fields to data object
     for (let [key, value] of formData.entries()) {
       data[key] = value;
     }
     
-    // Ensure escort_name is removed if not needed
+    // Handle special case for escort name
     if (data.random_escort === 'yes') {
       delete data.escort_name;
     }
     
+    // Show loading indicator in form status
+    const formStatus = document.getElementById('form-status');
+    if (formStatus) {
+      formStatus.textContent = 'Submitting registration...';
+      formStatus.style.color = '#0056b3';
+    }
+    
     try {
-      // Submit data to Firebase
+      // This is the only submission - all data sent at once
       await db.ref('registrations').push(data);
       
       // Reset form
@@ -333,49 +279,20 @@ if (confirmWaiver) {
       swimmerForm.classList.remove('active');
       activeForm = null;
       
+      // Clear form status
+      if (formStatus) {
+        formStatus.textContent = '';
+      }
     } catch (error) {
       console.error('Error saving registration:', error);
-      const formStatus = document.getElementById('form-status');
-      formStatus.textContent = 'Error submitting form. Please try again.';
-      formStatus.style.color = 'red';
+      
+      if (formStatus) {
+        formStatus.textContent = 'Error submitting form. Please try again.';
+        formStatus.style.color = 'red';
+      }
     }
   });
 }
-
-// Close success modal when clicking OK
-if (closeSuccess) {
-  closeSuccess.addEventListener('click', () => {
-    successModal.style.display = 'none';
-  });
-}
-
-// Close modals when clicking outside of them
-window.addEventListener('click', (e) => {
-  if (e.target === waiverModal) {
-    waiverModal.style.display = 'none';
-  }
-  if (e.target === successModal) {
-    successModal.style.display = 'none';
-  }
-});
-
-document.querySelectorAll('.contact-links .tab-switcher').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetTab = link.getAttribute('data-tab');
-    
-    // Remove active classes
-    tabLinks.forEach(link => link.classList.remove('active'));
-    tabContents.forEach(content => content.classList.remove('active'));
-    
-    // Find and activate the target tab
-    const targetLink = document.querySelector(`[data-tab="${targetTab}"]`);
-    if (targetLink) {
-      targetLink.classList.add('active');
-      document.getElementById(targetTab).classList.add('active');
-    }
-  });
-});
 
 // Add these to your existing script.js file
 
