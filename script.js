@@ -300,6 +300,85 @@ if (confirmWaiver) {
   });
 }
 
+// Fix for success modal closing issues
+
+// Get references to the success modal elements
+const successModal = document.getElementById('successModal');
+const closeButtons = document.querySelectorAll('.close-modal');
+const closeSuccess = document.querySelector('.close-success');
+
+// First, let's check if elements exist to avoid errors
+if (!successModal) {
+  console.error("Success modal element not found");
+}
+
+if (!closeSuccess) {
+  console.error("Close success button not found");
+}
+
+// Debug what elements we have
+console.log("Success modal:", successModal);
+console.log("Close buttons:", closeButtons);
+console.log("Close success button:", closeSuccess);
+
+// Replace event listeners for close buttons (X button)
+if (closeButtons && closeButtons.length) {
+  closeButtons.forEach(button => {
+    // Create a new button to replace the old one and remove all event listeners
+    const newButton = button.cloneNode(true);
+    button.parentNode.replaceChild(newButton, button);
+    
+    // Add a new event listener
+    newButton.addEventListener('click', () => {
+      console.log("Close button clicked");
+      // Close both modals to ensure everything is hidden
+      if (waiverModal) waiverModal.style.display = 'none';
+      if (successModal) successModal.style.display = 'none';
+    });
+  });
+}
+
+// Replace event listener for OK button in success modal
+if (closeSuccess) {
+  const newCloseSuccess = closeSuccess.cloneNode(true);
+  closeSuccess.parentNode.replaceChild(newCloseSuccess, closeSuccess);
+  
+  // Add a new event listener with explicit debugging
+  newCloseSuccess.addEventListener('click', (e) => {
+    console.log("OK button clicked in success modal");
+    e.preventDefault(); // Prevent any default behavior
+    e.stopPropagation(); // Stop event bubbling
+    
+    // Close the modal
+    if (successModal) {
+      successModal.style.display = 'none';
+      console.log("Success modal should be hidden now");
+    }
+  });
+}
+
+// Also add a click event to the modal backdrop (clicking outside the modal content)
+if (successModal) {
+  successModal.addEventListener('click', (e) => {
+    // Only close if clicking directly on the modal background (not its children)
+    if (e.target === successModal) {
+      console.log("Clicked outside modal content");
+      successModal.style.display = 'none';
+    }
+  });
+  
+  // Also add for touch events on mobile
+  successModal.addEventListener('touchstart', (e) => {
+    if (e.target === successModal) {
+      console.log("Touched outside modal content");
+      successModal.style.display = 'none';
+    }
+  });
+}
+
+// Add this at the end to check if any of the closing buttons work
+console.log("Modal closing handlers have been set up");
+
 // Add these to your existing script.js file
 
 // Fix 1: Mobile Menu Toggle
