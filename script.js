@@ -208,16 +208,19 @@ document.querySelector('[data-tab="records"]').addEventListener('click', generat
 
 // Modified form submission handler for swimmer registration
 if (swimmerForm) {
-  swimmerForm.addEventListener('button', async (e) => {
-    e.preventDefault();
-    
-    // Show waiver modal - don't submit data yet
-    waiverModal.style.display = 'block';
-    
-    // Reset waiver inputs
-    if (waiverAgree) waiverAgree.checked = false;
-    if (waiverInitials) waiverInitials.value = '';
-  });
+  const nextButton = swimmerForm.querySelector('.next-btn');
+  if (nextButton) {
+    nextButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Show waiver modal - don't submit data yet
+      waiverModal.style.display = 'block';
+      
+      // Reset waiver inputs
+      if (waiverAgree) waiverAgree.checked = false;
+      if (waiverInitials) waiverInitials.value = '';
+    });
+  }
 }
 
 // Modified confirm waiver button (submits the form with all data at once)
