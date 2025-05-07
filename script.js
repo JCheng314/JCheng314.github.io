@@ -300,13 +300,6 @@ if (confirmWaiver) {
   });
 }
 
-// Fix for success modal closing issues
-
-// Get references to the success modal elements
-const successModal = document.getElementById('successModal');
-const closeButtons = document.querySelectorAll('.close-modal');
-const closeSuccess = document.querySelector('.close-success');
-
 // First, let's check if elements exist to avoid errors
 if (!successModal) {
   console.error("Success modal element not found");
